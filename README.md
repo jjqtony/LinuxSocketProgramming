@@ -140,3 +140,76 @@ int main(int argc, char *argv[]) {
 }
 ```
 
+Windows客户端代码
+```
+
+#include <winsock2.h>
+#include <stdio.h>
+#include <Ws2tcpip.h>
+#include <string.h>
+
+#pragma comment(lib,"ws2_32.lib")
+
+#define PORT 3339
+
+int setaddr(struct sockaddr_in* addr, char *sstr, int port)
+{
+	addr->sin_family = AF_INET;
+	inet_pton(AF_INET, sstr, &(addr->sin_addr));
+	addr->sin_port = htons(port);
+	return  0;
+}
+
+int main(int argc, char *argv[]) {
+	int sockfd;						  // 客户套接字标识符
+	int len;					      // 客户消息长度
+	struct sockaddr_in addr;		  // 客户套接字地址
+	int newsockfd;
+	char buf[256] = "come on!";      //要发送的消息
+	int len2;
+	char rebuf[256];
+
+	//初始化WSA
+	WORD sockVersion = MAKEWORD(2, 2);
+	WSADATA wsaData;
+	if (WSAStartup(sockVersion, &wsaData) != 0)
+	{
+		return 0;
+	}
+
+	sockfd = socket(AF_INET, SOCK_STREAM, 0);	// 创建套接字
+
+	if (argc != 2)
+	{
+		printf("wrong usage\n");
+		puts("scw 服务端ip");
+		return 1;
+	}
+	
+	setaddr(&addr, argv[1], PORT);
+	
+	len = sizeof(addr);
+	newsockfd = connect(sockfd, (struct sockaddr *) &addr, len);	//发送连接服务器的请求
+	if (newsockfd == -1) {
+		perror("连接失败");
+		return 1;
+	}
+	len2 = sizeof(buf);
+	while (1) {
+		printf("请输入要发送的数据:");
+		scanf_s("%s", buf, len2);
+		send(sockfd, buf, len2, 0); //发送消息
+		if (recv(sockfd, rebuf, 256, 0)>0)//接收新消息
+		{
+			printf("收到服务器消息:\n%s\n", rebuf);//输出到终端
+			if (strcmp(rebuf, "quit") == 0)
+			{
+				printf("close connection\n");
+				break;
+			}
+		}
+	}
+	closesocket(sockfd);				// 关闭连接
+	return 0;
+}
+```
