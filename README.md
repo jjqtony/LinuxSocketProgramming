@@ -60,8 +60,6 @@ int main()
 	{
 		if (recv(c_fd, buf, 256, 0) > 0) //接收消息recv(c_fd,buf,256,0)>0
 		{
-			//read(c_fd,buf,256,0)
-			//buf[sizeof(buf)+1]='\0';
 			printf("收到客户端%s消息:\n %s\n", cstr, buf); //输出到终端
 			if (strcmp(buf, "-1") == 0)
 			{
@@ -128,7 +126,7 @@ int main(int argc, char *argv[]) {
 		scanf("%s", buf);
 		send(sockfd, buf, len2, 0); //发送消息
 		if (recv(sockfd, rebuf, 256, 0) > 0)//接收新消息
-		{//rebuf[sizeof(rebuf)+1]='\0';
+		{ 
 			printf("收到服务器消息:\n%s\n", rebuf);//输出到终端
 			if (strcmp(rebuf, "quit") == 0)
 			{
@@ -141,27 +139,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 ```
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/jjqtony/LinuxSocketProgramming/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
