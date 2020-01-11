@@ -14,6 +14,11 @@ Unix/Linux基本哲学之一就是“一切皆文件”，都可以通过open文
 
 客户端进程首先用socket函数创建一个socket，然后在connect函数中指定服务端socket的地址和端口去连接服务端的socket，如果连接成功，表示连接已创建，之后的通讯都是基于这个连接的（这就是面向连接的通讯），之后与前面所述的服务端进程类似，可以用read/recv/write/send函数进行通讯，通讯完毕后执行close关闭。
 
+```
+if (isAwesome){
+  return true
+}
+```
 
 # Header 1
 ## Header 2
