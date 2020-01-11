@@ -1,15 +1,8 @@
-## Welcome to GitHub Pages
+# Linux Socket编程
 
-You can use the [editor on GitHub](https://github.com/jjqtony/LinuxSocketProgramming/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+##什么是Socket？
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
+Unix/Linux基本哲学之一就是“一切皆文件”，都可以通过open文件来获得文件描述符，然后通过这个文件描述符进行IO的操作，即读写操作read和write，完成后用close关闭。Socket可以视为网络通讯两端的描述符，在创建socket后，网络通讯的两端都是对socket进行读写操作来完成网络通讯，通讯结束后，用close关闭socket。这些都非常类似于文件描述符。
 
 # Header 1
 ## Header 2
