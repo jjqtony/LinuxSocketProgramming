@@ -213,15 +213,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 ```
-{% highlight bash lineno %}
-int main(int argc, char *argv[]) {
-   int sockfd;								// 客户套接字标识符
-   int len;									// 客户消息长度
-   struct sockaddr_in addr;				// 客户套接字地址
-   int newsockfd;
-   char buf[256]="come on!";//要发送的消息
-   int len2;
-   char rebuf[256];
-   sockfd = socket(AF_INET,SOCK_STREAM, 0);	// 创建套接字
- }
-{% endhighlight %}
+ 
