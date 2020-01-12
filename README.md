@@ -159,9 +159,29 @@ bind()函数把一个地址族中的特定地址赋给socket。通常只在服�
 ```
 bind(fd, (struct sockaddr *) &addr, sizeof(addr));
 ```
-其中的第二个参数addr指定了服务端的地址，这个地址通常是本机地址（用INADDR_ANY表示），另外指定一个端口号，见服务端代码中的setaddr函数。
+其中的第二个参数addr指定了服务端的地址，这个地址通常是本机地址（用INADDR_ANY表示），另外还需指定一个端口号，见服务端代码中的setaddr函数。
 
 3. listen()
+```
+int listen(int socketfd, int backlog);
+```
+在服务端，在调用socket()、bind()之后就会调用listen()来监听这个socket，如果客户端这时调用connect()发出连接请求，服务器端就会接收到这个请求。
+其中的backlog参数是相应socket可以排队的最大连接个数。
+
+4. connect()
+```
+int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+```
+socketfd： 客户端socket的描述字。
+sockaddr: 服务器的socket地址。
+addrlen: socket地址的长度
+该函数由客户端执行，目的是为了与服务端建立连接，返回值如果为-1表示连接失败，否则为成功。
+
+
+windows下也有非常类似的socket编程，主要差别有如下几点：
+a. 头文件不同；
+b. windows下执行相关的socket函数前需要执行WSAStartup进行初始化；
+c. 关闭socket的函数不同，windows下使用closesocket函数。
 
 Windows客户端代码
 ```
