@@ -17,7 +17,7 @@ Unix/Linux基本哲学之一就是“一切皆文件”，都可以通过open文
 先给个简单例子说明通讯过程
 
 服务端代码
-```
+{% highlight c linenos %}
 #include <sys/types.h>
 #include <sys/socket.h>	  // 包含套接字函数库
 #include <stdio.h>
@@ -76,7 +76,7 @@ int main()
 	}
 	close(c_fd); // 关闭连接
 }
-```
+{% endhighlight %}
 客户端代码
 ```
 #include <sys/types.h>
