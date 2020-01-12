@@ -139,6 +139,29 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 ```
+上面的服务端和客户端代码中用到的几个关键函数：
+
+1. socket()
+```
+int socket(int domain, int type, int protocol);
+```
+该函数用于创建一个socket，如果是在pv4环境下，使用TCP协议通信协议，则典型的调用方法：
+```
+fd = socket(AF_INET, SOCK_STREAM, 0);
+```
+此后所有的网络操作都是对fd进行。
+
+2. bind()
+```
+int bind(int socketfd, const struct sockaddr *addr, socklen_t addrlen);
+```
+bind()函数把一个地址族中的特定地址赋给socket。通常只在服务端调用，典型的调用方式：
+```
+bind(fd, (struct sockaddr *) &addr, sizeof(addr));
+```
+其中的第二个参数addr指定了服务端的地址，这个地址通常是本机地址（用INADDR_ANY表示），另外指定一个端口号，见服务端代码中的setaddr函数。
+
+3. listen()
 
 Windows客户端代码
 ```
