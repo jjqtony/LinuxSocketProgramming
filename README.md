@@ -29,9 +29,9 @@ Unix/Linux基本哲学之一就是“一切皆文件”，都可以通过open文
 
 int setaddr(struct sockaddr_in* addr, int port)
 {
-	addr->sin_family = AF_INET;
-	addr->sin_addr.s_addr = INADDR_ANY;
-	addr->sin_port = htons(port);
+	addr->sin_family = AF_INET;   //TCP/IP地址族
+	addr->sin_addr.s_addr = INADDR_ANY;  //服务端接受来自所有地址的链接
+	addr->sin_port = htons(port);    //将字节序转换为网络上使用的字节序
 	return  0;
 }
 
