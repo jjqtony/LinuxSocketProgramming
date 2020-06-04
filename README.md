@@ -92,7 +92,7 @@ int setaddr(struct sockaddr_in* addr, char *sstr, int port)
 {
 	addr->sin_family = AF_INET;
 	//addr->sin_addr.s_addr=INADDR_ANY;
-	inet_pton(AF_INET, sstr, &(addr->sin_addr));
+	inet_pton(AF_INET, sstr, &(addr->sin_addr)); //convert IPv4 and IPv6 addresses from text to binary form
 	addr->sin_port = htons(port);
 	return  0;
 }
